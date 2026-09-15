@@ -21,7 +21,7 @@ namespace DigitalShutterRentals
         {
             userDatabase.Clear();
 
-            // Create sample file if it doesn't exist
+            
             if (!File.Exists(UserFilePath))
             {
                 File.WriteAllLines(UserFilePath, new[] {

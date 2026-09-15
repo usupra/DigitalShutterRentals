@@ -7,7 +7,7 @@ namespace DigitalShutterRentals
 {
     public partial class LoginForm : Form
     {
-        // Dictionary structure to store credentials in memory
+        
         private Dictionary<string, User> userDatabase = new Dictionary<string, User>(StringComparer.OrdinalIgnoreCase);
         private const string UserFilePath = "users.txt";
 

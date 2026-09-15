@@ -30,7 +30,6 @@ namespace DigitalShutterRentals
                 });
             }
 
-            // Read file and parse users
             string[] lines = File.ReadAllLines(UserFilePath);
             foreach (string line in lines)
             {

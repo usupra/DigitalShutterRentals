@@ -90,7 +90,12 @@ namespace DigitalShutterRentals
 
         private void lnkRegister_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("The Registration screen will open here.", "Register", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RegisterForm regForm = new RegisterForm();
+            this.Hide();
+            regForm.ShowDialog();
+
+            this.Show();
+            LoadUsersFromFile();
         }
     }
 }

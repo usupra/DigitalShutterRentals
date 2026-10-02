@@ -68,7 +68,12 @@ namespace DigitalShutterRentals
                     MessageBox.Show($"Login Successful! Welcome {currentUser.Username} ({currentUser.Role}).",
                                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    
+                    MainDashboardForm dashboard = new MainDashboardForm(currentUser);
+                    this.Hide();
+                    dashboard.ShowDialog();
+
+                    txtPassword.Clear();
+                    this.Show();
                 }
                 else
                 {

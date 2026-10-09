@@ -42,13 +42,17 @@
             label1 = new Label();
             label2 = new Label();
             toolStripMain = new ToolStrip();
-            tslblUser = new ToolStripLabel();
             toolStripSeparator1 = new ToolStripSeparator();
             tsbtnRentals = new ToolStripButton();
-            tsbtnAddGear = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
+            tsbtnAddGear = new ToolStripButton();
+            tsbtnExit = new ToolStripButton();
             tsbtnLogout = new ToolStripButton();
+            tsbtnRemoveGear = new ToolStripButton();
+            tsbtnEditGear = new ToolStripButton();
             label3 = new Label();
+            tsddbUser = new ToolStripDropDownButton();
+            tsmiDeleteAccount = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dgvEquipment).BeginInit();
             toolStripMain.SuspendLayout();
             SuspendLayout();
@@ -177,18 +181,12 @@
             // 
             // toolStripMain
             // 
-            toolStripMain.Items.AddRange(new ToolStripItem[] { tslblUser, toolStripSeparator1, tsbtnRentals, tsbtnAddGear, toolStripSeparator2, tsbtnLogout });
+            toolStripMain.Items.AddRange(new ToolStripItem[] { tsddbUser, toolStripSeparator1, tsbtnRentals, toolStripSeparator2, tsbtnAddGear, tsbtnExit, tsbtnLogout, tsbtnRemoveGear, tsbtnEditGear });
             toolStripMain.Location = new Point(0, 0);
             toolStripMain.Name = "toolStripMain";
             toolStripMain.Size = new Size(1033, 25);
             toolStripMain.TabIndex = 13;
             toolStripMain.Text = "toolStrip1";
-            // 
-            // tslblUser
-            // 
-            tslblUser.Name = "tslblUser";
-            tslblUser.Size = new Size(118, 22);
-            tslblUser.Text = "User: [Name] ([Role])";
             // 
             // toolStripSeparator1
             // 
@@ -204,6 +202,11 @@
             tsbtnRentals.Text = "📋 Manage Bookings and Returns";
             tsbtnRentals.Click += tsbtnRentals_Click_1;
             // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 25);
+            // 
             // tsbtnAddGear
             // 
             tsbtnAddGear.DisplayStyle = ToolStripItemDisplayStyle.Text;
@@ -214,10 +217,16 @@
             tsbtnAddGear.Text = "➕ Add Equipment";
             tsbtnAddGear.Click += tsbtnAddGear_Click_1;
             // 
-            // toolStripSeparator2
+            // tsbtnExit
             // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 25);
+            tsbtnExit.Alignment = ToolStripItemAlignment.Right;
+            tsbtnExit.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbtnExit.Image = (Image)resources.GetObject("tsbtnExit.Image");
+            tsbtnExit.ImageTransparentColor = Color.Magenta;
+            tsbtnExit.Name = "tsbtnExit";
+            tsbtnExit.Size = new Size(29, 22);
+            tsbtnExit.Text = "Exit";
+            tsbtnExit.Click += tsbtnExit_Click;
             // 
             // tsbtnLogout
             // 
@@ -230,6 +239,26 @@
             tsbtnLogout.Text = "🚪 Log Out";
             tsbtnLogout.Click += tsbtnLogout_Click_1;
             // 
+            // tsbtnRemoveGear
+            // 
+            tsbtnRemoveGear.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbtnRemoveGear.Image = (Image)resources.GetObject("tsbtnRemoveGear.Image");
+            tsbtnRemoveGear.ImageTransparentColor = Color.Magenta;
+            tsbtnRemoveGear.Name = "tsbtnRemoveGear";
+            tsbtnRemoveGear.Size = new Size(130, 22);
+            tsbtnRemoveGear.Text = "🗑️ Remove Equipment";
+            tsbtnRemoveGear.Click += tsbtnRemoveGear_Click;
+            // 
+            // tsbtnEditGear
+            // 
+            tsbtnEditGear.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbtnEditGear.Image = (Image)resources.GetObject("tsbtnEditGear.Image");
+            tsbtnEditGear.ImageTransparentColor = Color.Magenta;
+            tsbtnEditGear.Name = "tsbtnEditGear";
+            tsbtnEditGear.Size = new Size(107, 22);
+            tsbtnEditGear.Text = "✏️ Edit Equipment";
+            tsbtnEditGear.Click += tsbtnEditGear_Click;
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -238,6 +267,20 @@
             label3.Size = new Size(45, 15);
             label3.TabIndex = 14;
             label3.Text = "Search:";
+            // 
+            // tsddbUser
+            // 
+            tsddbUser.DropDownItems.AddRange(new ToolStripItem[] { tsmiDeleteAccount });
+            tsddbUser.Name = "tsddbUser";
+            tsddbUser.Size = new Size(83, 22);
+            tsddbUser.Text = " 👤 Account";
+            // 
+            // tsmiDeleteAccount
+            // 
+            tsmiDeleteAccount.Name = "tsmiDeleteAccount";
+            tsmiDeleteAccount.Size = new Size(190, 22);
+            tsmiDeleteAccount.Text = "❌ Delete My Account";
+            tsmiDeleteAccount.Click += tsmiDeleteAccount_Click;
             // 
             // MainDashboardForm
             // 
@@ -258,6 +301,7 @@
             Controls.Add(cmbCategoryFilter);
             Controls.Add(txtSearch);
             Controls.Add(lblUserGreeting);
+            MaximizeBox = false;
             Name = "MainDashboardForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Digital Shutter Rentals - Catalog & Booking";
@@ -283,12 +327,16 @@
         private Label label1;
         private Label label2;
         private ToolStrip toolStripMain;
-        private ToolStripLabel tslblUser;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton tsbtnRentals;
         private ToolStripButton tsbtnAddGear;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton tsbtnLogout;
         private Label label3;
+        private ToolStripButton tsbtnExit;
+        private ToolStripButton tsbtnRemoveGear;
+        private ToolStripButton tsbtnEditGear;
+        private ToolStripDropDownButton tsddbUser;
+        private ToolStripMenuItem tsmiDeleteAccount;
     }
 }

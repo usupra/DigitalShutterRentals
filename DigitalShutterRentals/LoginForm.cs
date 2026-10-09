@@ -72,6 +72,8 @@ namespace DigitalShutterRentals
                     this.Hide();
                     dashboard.ShowDialog();
 
+                    LoadUsersFromFile();
+
                     txtPassword.Clear();
                     this.Show();
                 }
